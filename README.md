@@ -29,10 +29,8 @@ uvicorn main:app --reload
 ```
 Isso iniciará o servidor em ```http://127.0.0.1:8000```. Você poderá acessar a documentação automática da API gerada pelo Swagger em ```http://127.0.0.1:8000/docs```.
 ## Atualizações:
-- Containerização docker da API
-
-## Atualizações
 - Containerização docker da API.
+
 
 
 
