@@ -32,7 +32,7 @@ Isso iniciará o servidor em ```http://127.0.0.1:8000```. Você poderá acessar 
 - Containerização docker da API
 
 ## Atualizações
-- Containerização docker da API
+- Containerização docker da API.
 
 
 
