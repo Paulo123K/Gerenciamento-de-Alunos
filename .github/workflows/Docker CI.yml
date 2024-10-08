@@ -9,6 +9,9 @@ jobs:
   push_to_docker_hub:
     runs-on: ubuntu-latest
 
+    env:
+      TRIVY_VERSION: v0.44.0
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v4.2.0
@@ -35,15 +38,14 @@ jobs:
       run: |
         sudo apt-get update -y
         sudo apt-get install -y wget
-        wget https://github.com/aquasecurity/trivy/releases/download/v0.44.0/trivy_0.44.0_Linux-64bit.deb
-        sudo dpkg -i trivy_0.44.0_Linux-64bit.deb    
+        wget https://github.com/aquasecurity/trivy/releases/download/${{ env.TRIVY_VERSION }}/trivy_${{ env.TRIVY_VERSION }}_Linux-64bit.deb
+        sudo dpkg -i trivy_${{ env.TRIVY_VERSION }}_Linux-64bit.deb      
         
     - name: Scan Docker Image
       run: trivy image paulo123k/meu_fastapi_app:${{ github.run_number }}
       continue-on-error: false
 
-    - name: Push Docker image to Docker Hub
-      if: success()
+    - name: Push Docker image to Docker Hub  
       uses: docker/build-push-action@v6.9.0
       with:
         context: .
