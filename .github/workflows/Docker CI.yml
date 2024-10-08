@@ -42,8 +42,10 @@ jobs:
         sudo dpkg -i trivy_${{ env.TRIVY_VERSION }}_Linux-64bit.deb      
         
     - name: Scan Docker Image
-      run: trivy image paulo123k/meu_fastapi_app:${{ github.run_number }}
       continue-on-error: false
+      run: |
+        trivy image paulo123k/meu_fastapi_app:${{ github.run_number }}
+      
 
     - name: Push Docker image to Docker Hub  
       if: success()
