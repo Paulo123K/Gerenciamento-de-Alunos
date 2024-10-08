@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      TRIVY_VERSION: v0.44.0
+      TRIVY_VERSION: v0.56.1
 
     steps:
     - name: Checkout code
