@@ -32,13 +32,16 @@ jobs:
           paulo123k/meu_fastapi_app:${{ github.run_number }}
           paulo123k/meu_fastapi_app:latest
 
-    - name: Cache Trivy DB
-      uses: actions/cache@v2
-      with:
-        path: ~/.cache/trivy
-        key: ${{ runner.os }}-trivy-${{ hashFiles('**/Dockerfile') }}
-        restore-keys: |
-          ${{ runner.os }}-trivy-
+    - name: Install Trivy
+      run: |
+        sudo apt-get update -y
+        sudo apt-get install -y wget
+        wget https://github.com/aquasecurity/trivy/releases/download/v0.44.0/trivy_0.44.0_Linux-64bit.deb
+        sudo dpkg -i trivy_0.44.0_Linux-64bit.deb
+        sudo ln -s /usr/local/bin/trivy /usr/bin/trivy
+
+    - name: Verify Trivy installation
+      run: trivy --version
 
     - name: Scan Docker Image
       run: |
