@@ -44,4 +44,4 @@ jobs:
 
     - name: Scan Docker Image
       run: |
-        trivy image paulo123k/meu_fastapi_app:${{ github.run_number }}
+        trivy image --severity HIGH,CRITICAL paulo123k/meu_fastapi_app:${{ github.run_number }}
