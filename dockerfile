@@ -10,6 +10,9 @@ COPY requirements.txt .
 #Atualiza o pip para evitar vulnerabilidades
 RUN python -m pip install --no-cache-dir --upgrade pip
 
+# Atualiza o setuptools para a versão mais segura
+RUN python -m pip install --no-cache-dir --upgrade setuptools
+
 # executa o comando sem armazenar cache
 RUN pip install --no-cache-dir -r requirements.txt
 
