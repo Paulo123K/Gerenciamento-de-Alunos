@@ -7,6 +7,9 @@ WORKDIR /app
 #copia o arquivo para o diretorio do conteiner "/app"
 COPY requirements.txt .
 
+#Atualiza o pip para evitar vulnerabilidades
+RUN python -m pip install --no-cache-dir --upgrade pip
+
 # executa o comando sem armazenar cache
 RUN pip install --no-cache-dir -r requirements.txt
 
